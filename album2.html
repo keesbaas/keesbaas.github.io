@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Album 1</title>
+    <link rel="stylesheet" href="style2.css">
+    <!-- Optional: import a modern font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<h1>Album: My Landscape Photos</h1>
+
+<div class="album-container" id="album-container">
+    <!-- JS will populate rows here -->
+</div>
+
+<script>
+    // Array of photos and captions
+    const photos = [
+        { src: "images/zion1.jpg", caption: "A short paragraph description of image 1." },
+        { src: "images/zion2.jpg", caption: "A short paragraph description of image 2." },
+        { src: "images/zion3.jpg", caption: "A short paragraph description of image 3." },
+        { src: "images/zion4.jpg", caption: "A short paragraph description of image 4." },
+        { src: "images/zion5.jpg", caption: "A short paragraph description of image 5." },
+        { src: "images/zion6.jpg", caption: "A short paragraph description of image 6." },
+        { src: "images/zion7.jpg", caption: "A short paragraph description of image 7." },
+        { src: "images/zion8.jpg", caption: "A short paragraph description of image 8." },
+        { src: "images/zion9.jpg", caption: "A short paragraph description of image 9." },
+        { src: "images/zion10.jpg", caption: "A short paragraph description of image 10." },
+        { src: "images/zion11.jpg", caption: "A short paragraph description of image 11." }
+    ];
+
+    const container = document.getElementById("album-container");
+
+    photos.forEach(photo => {
+        const row = document.createElement("div");
+        row.className = "photo-row";
+
+        const img = document.createElement("img");
+        img.src = photo.src;
+        img.alt = photo.caption;
+        img.loading = "eager";
+
+        const p = document.createElement("p");
+        p.textContent = photo.caption;
+
+        row.appendChild(img);
+        row.appendChild(p);
+        container.appendChild(row);
+    });
+</script>
+
+</body>
+</html>
