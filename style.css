@@ -1,0 +1,26 @@
+body {
+  background-color: #000;
+  color: #fff;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.photo-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.photo-row img {
+  width: 50%;      /* Adjust this if you want bigger pictures */
+  height: auto;
+  margin-right: 20px;
+}
+
+.photo-row p {
+  width: 50%;      /* Text takes the right half */
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
