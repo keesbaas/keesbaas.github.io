@@ -49,8 +49,8 @@ h1 {
 
 /* Image styling */
 .photo-row img {
-  width: 50%;
-  max-width: 600px;
+  width: 60%;
+  max-width: 800px;
   height: auto;
   display: block;
   border-radius: 8px;
