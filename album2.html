@@ -2,33 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Album 1</title>
+    <title>zion '25</title>
     <link rel="stylesheet" href="style2.css">
-    <!-- Optional: import a modern font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<h1>Album: My Landscape Photos</h1>
+<h1>zion '25</h1>
 
 <div class="album-container" id="album-container">
     <!-- JS will populate rows here -->
 </div>
 
 <script>
-    // Array of photos and captions
+    // Array of photos with low-res display and high-res links
     const photos = [
-        { src: "images/zion1_low.jpg", caption: "A short paragraph description of image 1." },
-        { src: "images/zion2_low.jpg", caption: "A short paragraph description of image 2." },
-        { src: "images/zion3_low.jpg", caption: "A short paragraph description of image 3." },
-        { src: "images/zion4_low.jpg", caption: "A short paragraph description of image 4." },
-        { src: "images/zion5_low.jpg", caption: "A short paragraph description of image 5." },
-        { src: "images/zion6_low.jpg", caption: "A short paragraph description of image 6." },
-        { src: "images/zion7_low.jpg", caption: "A short paragraph description of image 7." },
-        { src: "images/zion8_low.jpg", caption: "A short paragraph description of image 8." },
-        { src: "images/zion9_low.jpg", caption: "A short paragraph description of image 9." },
-        { src: "images/zion10_low.jpg", caption: "A short paragraph description of image 10." },
-        { src: "images/zion11_low.jpg", caption: "A short paragraph description of image 11." }
+        { src: "images/zion1_low.jpg", highres: "images/zion1.jpg", caption: "Description 1" },
+        { src: "images/zion2_low.jpg", highres: "images/zion2.jpg", caption: "Description 2" },
+        { src: "images/zion3_low.jpg", highres: "images/zion3.jpg", caption: "Description 3" },
+        { src: "images/zion4_low.jpg", highres: "images/zion4.jpg", caption: "Description 4" },
+        { src: "images/zion5_low.jpg", highres: "images/zion5.jpg", caption: "Description 5" },
+        { src: "images/zion6_low.jpg", highres: "images/zion6.jpg", caption: "Description 6" },
+        { src: "images/zion7_low.jpg", highres: "images/zion7.jpg", caption: "Description 7" },
+        { src: "images/zion8_low.jpg", highres: "images/zion8.jpg", caption: "Description 8" },
+        { src: "images/zion9_low.jpg", highres: "images/zion9.jpg", caption: "Description 9" },
+        { src: "images/zion10_low.jpg", highres: "images/zion10.jpg", caption: "Description 10" },
+        { src: "images/zion11_low.jpg", highres: "images/zion11.jpg", caption: "Description 11" }
     ];
 
     const container = document.getElementById("album-container");
@@ -37,18 +36,41 @@
         const row = document.createElement("div");
         row.className = "photo-row";
 
+        // Create link to high-res image
+        const link = document.createElement("a");
+        link.href = photo.highres;
+        link.target = "_blank";
+
+        // Create image
         const img = document.createElement("img");
         img.src = photo.src;
         img.alt = photo.caption;
         img.loading = "eager";
 
+        link.appendChild(img);
+
+        // Create paragraph
         const p = document.createElement("p");
         p.textContent = photo.caption;
 
-        row.appendChild(img);
+        // Add to row
+        row.appendChild(link);
         row.appendChild(p);
         container.appendChild(row);
     });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.photo-row').forEach(row => observer.observe(row));
+
 </script>
 
 </body>
