@@ -1,0 +1,76 @@
+/* Reset and box-sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(to bottom, #0a0a0a, #111);
+  color: #eee;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
+h1 {
+  text-align: center;
+  margin: 40px 0;
+  font-size: 2.5rem;
+}
+
+/* Container for all rows */
+.album-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Each photo + text row */
+.photo-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 20px 0;
+  gap: 30px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  transition: transform 0.3s ease;
+}
+
+/* Image styling */
+.photo-row img {
+  width: 50%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  loading: eager;
+}
+
+.photo-row img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+}
+
+/* Text styling */
+.photo-row p {
+  width: 50%;
+  font-size: 1.1rem;
+  color: #ccc;
+}
+
+/* Responsive for tablets and phones */
+@media (max-width: 768px) {
+  .photo-row {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .photo-row img,
+  .photo-row p {
+    width: 100%;
+    margin: 0 0 15px 0;
+  }
+}
