@@ -29,13 +29,22 @@ h1 {
 /* Each photo + text row */
 .photo-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
   padding: 20px 0;
   gap: 30px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
-  transition: transform 0.3s ease;
+
+  /* Fade-in effect */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.photo-row.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Image styling */
@@ -43,10 +52,11 @@ h1 {
   width: 50%;
   max-width: 600px;
   height: auto;
+  display: block;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  loading: eager;
+  object-fit: contain;
 }
 
 .photo-row img:hover {
@@ -66,6 +76,7 @@ h1 {
   .photo-row {
     flex-direction: column;
     text-align: center;
+    align-items: center;
   }
 
   .photo-row img,
