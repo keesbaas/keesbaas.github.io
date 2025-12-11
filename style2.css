@@ -31,38 +31,39 @@ h1 {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+  gap: 30px;
   width: 100%;
   padding: 20px 0;
-  gap: 30px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
 
   /* Fade-in effect */
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
 
-  .photo-row a {
-  display: block;    /* makes the <a> a block container */
-  width: 60%;        /* matches your desired image width */
+  flex-wrap: wrap; /* allows wrapping on small screens */
 }
-
 
 .photo-row.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
+/* Image container */
+.photo-row a {
+  flex: 0 0 60%;   /* do not grow/shrink, base width 60% of row */
+  display: block;
+}
+
 /* Image styling */
 .photo-row img {
-  width: 100%;
-  max-width: 800px;
+  width: 100%;       /* fill the <a> container */
   height: auto;
   display: block;
   border-radius: 8px;
+  object-fit: contain;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  object-fit: contain;
 }
 
 .photo-row img:hover {
@@ -72,7 +73,7 @@ h1 {
 
 /* Text styling */
 .photo-row p {
-  width: 50%;
+  flex: 1 1 35%;     /* paragraph takes ~35% of row, can shrink slightly */
   font-size: 1.1rem;
   color: #ccc;
 }
@@ -85,6 +86,7 @@ h1 {
     align-items: center;
   }
 
+  .photo-row a,
   .photo-row img,
   .photo-row p {
     width: 100%;
