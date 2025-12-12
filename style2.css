@@ -74,6 +74,7 @@ h1 {
 /* Text styling */
 .photo-row p {
   flex: 1 1 35%;     /* paragraph takes ~35% of row, can shrink slightly */
+  text-align: center;
   font-size: 1.1rem;
   color: #ccc;
 }
