@@ -1,0 +1,32 @@
+[
+  {
+    "src": "images/teton1_low.jpg",
+    "highres": "images/teton1.jpg",
+    "caption": ""
+  },
+ {
+    "src": "images/teton2_low.jpg",
+    "highres": "images/teton2.jpg",
+    "caption": ""
+  },
+  {
+    "src": "images/teton3_low.jpg",
+    "highres": "images/teton3.jpg",
+    "caption": ""
+  },
+  {
+    "src": "images/teton4_low.jpg",
+    "highres": "images/teton4.jpg",
+    "caption": ""
+  },
+  {
+    "src": "images/teton5_low.jpg",
+    "highres": "images/teton5.jpg",
+    "caption": ""
+  },
+  {
+    "src": "images/teton6_low.jpg",
+    "highres": "images/teton6.jpg",
+    "caption": ""
+  }
+]
