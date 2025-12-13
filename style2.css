@@ -13,8 +13,11 @@ body {
   scroll-behavior: smooth;
 }
 
-header {
-  text-align: center;
+header .fade-link {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  opacity: 0.8;
 }
 
 h1 {
