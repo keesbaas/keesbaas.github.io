@@ -13,6 +13,10 @@ body {
   scroll-behavior: smooth;
 }
 
+header {
+  text-align: center;
+}
+
 h1 {
   text-align: center;
   margin: 40px 0;
