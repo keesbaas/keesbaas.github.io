@@ -1,36 +1,36 @@
 [
   {
-    "src": "images/IR1_low.jpg",
+    "src": "images/IR1.jpg",
     "highres": "images/IR1.jpg",
     "caption": ""
   },
    {
-    "src": "images/IR2_low.jpg",
+    "src": "images/IR2.jpg",
     "highres": "images/IR2.jpg",
     "caption": ""
   },
   {
-    "src": "images/IR3_low.jpg",
+    "src": "images/IR3.jpg",
     "highres": "images/IR3.jpg",
     "caption": ""
   },
   {
-    "src": "images/IR4_low.jpg",
+    "src": "images/IR4.jpg",
     "highres": "images/IR4.jpg",
     "caption": ""
   },
   {
-    "src": "images/IR5_low.jpg",
+    "src": "images/IR5.jpg",
     "highres": "images/IR5.jpg",
     "caption": ""
   },
   {
-    "src": "images/IR6_low.jpg",
+    "src": "images/IR6.jpg",
     "highres": "images/IR6.jpg",
     "caption": ""
   },
   {
-    "src": "images/IR7_low.jpg",
+    "src": "images/IR7.jpg",
     "highres": "images/IR7.jpg",
     "caption": ""
   }
