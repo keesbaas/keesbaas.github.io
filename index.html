@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="assets/css/btnStyle.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pics</title>
 
+    <!-- Existing button style -->
+    <link rel="stylesheet" href="assets/css/btnStyle.css">
+    <!-- New album gallery CSS -->
+    <link rel="stylesheet" href="assets/css/albumGallery.css">
+
     <style>
+        /* Body and header styling */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -23,22 +28,24 @@
             margin-bottom: 0.5rem;
         }
 
+        /* Gallery grid */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 10px;
+            gap: 20px;
             padding: 20px;
         }
 
-        .gallery img {
-            width: 100%;
-            height: auto;
-            border-radius: 6px;
-            transition: transform 0.2s ease;
+        /* Optional: fade-link style if you want other text links */
+        .fade-link,
+        .fade-link:visited {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.25s ease;
         }
 
-        .gallery img:hover {
-            transform: scale(1.03);
+        .fade-link:hover {
+            color: #cccccc;
         }
     </style>
 </head>
@@ -47,32 +54,26 @@
     <header>
         <h1>some pics</h1>
         <p>woooo.</p>
-        
-        <a href="albums3.html" class="fade-link">zion '25</a><br>
-        <a href="albums4.html" class="fade-link">tetons</a><br>
-        <a href="isleRoyale.html" class="fade-link">isle royale</a>
-
-<style>
-.fade-link,
-  .fade-link:visited {
-    color: #ffffff;
-    text-decoration: none;
-    transition: color 0.25s ease;
-  }
-
-  .fade-link:hover {
-    color: #cccccc;
-  }
-</style>
     </header>
 
     <section class="gallery">
-        <!-- Add your images here -->
-        <img src="images/ALBO9892.JPG" alt="tetons">
-        <img src="images/cormac.JPG" alt="coyote ridge during cameron peak fire">
-        <img src="images/EDIT_matt_woods.jpg" alt="matt on isle royale">
-        <img src="images/DSC_0081.JPG" alt="zion">
-    </section>
+        <!-- Album 1 -->
+        <a href="albums3.html" class="album-card">
+            <img src="images/DSC_0081.JPG" alt="zion '25">
+            <div class="album-label">zion '25</div>
+        </a>
 
+        <!-- Album 2 -->
+        <a href="albums4.html" class="album-card">
+            <img src="images/ALBO9892.JPG" alt="tetons">
+            <div class="album-label">tetons</div>
+        </a>
+
+        <!-- Album 3 -->
+        <a href="isleRoyale.html" class="album-card">
+            <img src="images/EDIT_matt_woods.jpg" alt="isle royale">
+            <div class="album-label">isle royale</div>
+        </a>
+    </section>
 </body>
 </html>
