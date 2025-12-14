@@ -119,7 +119,12 @@ const visitedParks = [
   fetch('visited_parks.geojson')
     .then(response => response.json())
     .then(data => {
-      L.geoJSON(data, {
+      const filteredFeatures = data.features.filter(feature =>
+        visitedParks.includes(feature.properties.UNIT_NAME)
+      );
+
+
+      L.geoJSON(filteredFeatures, {
         style: {
           color: '#ffcc00',
           weight: 2,
