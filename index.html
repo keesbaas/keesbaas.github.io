@@ -10,6 +10,13 @@
     <!-- New album gallery CSS -->
     <link rel="stylesheet" href="albumGallery.css">
 
+    <!-- Leaflet CSS -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+
+
     <style>
         /* Body and header styling */
         body {
@@ -47,6 +54,16 @@
         .fade-link:hover {
             color: #cccccc;
         }
+
+                /* Map container */
+        #map {
+            width: 100%;
+            height: 500px;
+            margin: 0 auto 30px auto;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+        }
+
     </style>
 </head>
 
@@ -56,6 +73,8 @@
         <p>woooo.</p>
     </header>
 
+    <div id="map"></div>
+    
     <section class="gallery">
         <!-- Album 1 -->
         <a href="albums3.html" class="album-card">
@@ -75,5 +94,39 @@
             <div class="album-label">isle royale</div>
         </a>
     </section>
+    <!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+  // Initialize map
+  const map = L.map('map').setView([39.5, -98.35], 4);
+
+  // Esri World Imagery basemap
+  L.tileLayer(
+    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    {
+      attribution: 'Esri'
+    }
+  ).addTo(map);
+
+  // Load visited parks GeoJSON
+  fetch('visited_parks.geojson')
+    .then(response => response.json())
+    .then(data => {
+      L.geoJSON(data, {
+        style: {
+          color: '#ffcc00',
+          weight: 2,
+          fillOpacity: 0
+        },
+        onEachFeature: function (feature, layer) {
+          layer.bindPopup(
+            `<strong>${feature.properties.UNIT_NAME}</strong>`
+          );
+        }
+      }).addTo(map);
+    });
+</script>
+
 </body>
 </html>
