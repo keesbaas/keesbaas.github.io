@@ -109,6 +109,12 @@
     }
   ).addTo(map);
 
+const visitedParks = [
+  "Zion National Park",
+  "Yosemite National Park",
+  "Isle Royale National Park"
+];
+
   // Load visited parks GeoJSON
   fetch('visited_parks.geojson')
     .then(response => response.json())
