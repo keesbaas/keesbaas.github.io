@@ -162,6 +162,13 @@ const blackTriangle = L.divIcon({
         icon: blackTriangle
     }).addTo(map);
 
+       marker.bindTooltip(photo.caption, {
+    permanent: true,       // always visible
+    direction: 'top',      // position above marker
+    offset: [10, -10],     // x (right), y (up) in pixels
+    className: 'photo-label'  // optional CSS class for styling
+  });
+
     marker.on('click', () => {
       // Scroll to the photo in your album
       const photoRow = document.querySelectorAll('.photo-row')[photo.id];
