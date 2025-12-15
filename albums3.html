@@ -57,7 +57,30 @@
 <!-- Leaflet GPX plugin -->
 <script src="https://unpkg.com/leaflet-gpx/gpx.min.js"></script>
 
-    <script>
+<script>
+  const map = L.map('map').setView([37.2982, -113.0263], 13);
+
+  L.tileLayer(
+    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    { attribution: 'Esri' }
+  ).addTo(map);
+
+  new L.GPX('ZionTraverse.gpx', {
+    async: true,
+    polyline_options: {
+      color: '#00E5FF',
+      weight: 4,
+      opacity: 0.9
+    }
+  })
+  .on('loaded', e => {
+    map.fitBounds(e.target.getBounds());
+  })
+  .addTo(map);
+</script>
+
+    
+    <!-- <script>
   // Initialize map centered on Zion
   const map = L.map('map').setView(
     [37.2982, -113.0263], // Zion NP
@@ -102,7 +125,7 @@
     }, 25);
   })
   .addTo(map);
-</script>
+</script> -->
 
     
 <script>
