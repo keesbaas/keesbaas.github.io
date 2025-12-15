@@ -67,6 +67,21 @@
     { attribution: 'Esri' }
   ).addTo(map);
 
+// Load Zion park boundary
+fetch('visited_parks.geojson')
+  .then(response => response.json())
+  .then(data => {
+    L.geoJSON(data, {
+      style: {
+        color: '#FFD700',    // border color
+        weight: 2,
+        fillColor: '#FFFF00', // semi-transparent fill
+        fillOpacity: 0.2
+      }
+    }).addTo(map);
+  })
+  .catch(err => console.error('Failed to load boundary geojson:', err));
+
   new L.GPX('ZionTraverse.gpx', {
     async: true,
     polyline_options: {
