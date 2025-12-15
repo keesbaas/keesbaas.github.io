@@ -59,8 +59,8 @@
 
 
 
-<!-- <script>
-  const map = L.map('map').setView([37.2982, -113.0263], 13);
+<script>
+  const map = L.map('map').setView([37.2982, -113.0263], 10);
 
   L.tileLayer(
     'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
@@ -72,17 +72,48 @@
     polyline_options: {
       color: '#00E5FF',
       weight: 4,
-      opacity: 0.9
+      opacity: 0.9,
+          marker_options: {
+      startIcon: null,   // no start marker
+      endIcon: null,     // no end marker
+      shadow: null
+    
+  
     }
   })
-  .on('loaded', e => {
-    map.fitBounds(e.target.getBounds());
+  .on('loaded', function(e) {
+    map.fitBounds(e.target.getBounds(), { padding: [20, 20] });
+  })
+  .on('error', function(err){
+    console.error('Failed to load GPX:', err);
   })
   .addTo(map);
-</script> -->
+
+  // Add photo markers along the route
+  const photos = [
+    { id: 0, lat: 37.2975, lng: -113.028, caption: "Start View" },
+    { id: 1, lat: 37.2990, lng: -113.025, caption: "Canyon Overlook" },
+    { id: 2, lat: 37.3000, lng: -113.023, caption: "Trail Junction" }
+    // ...add more with correct lat/lng and your album index
+  ];
+
+  photos.forEach(photo => {
+    const marker = L.marker([photo.lat, photo.lng], {
+      title: photo.caption
+    }).addTo(map);
+
+    marker.on('click', () => {
+      // Scroll to the photo in your album
+      const photoRow = document.querySelectorAll('.photo-row')[photo.id];
+      if(photoRow){
+        photoRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  });
+</script>
 
     
-<script>
+<!-- <script>
   // Initialize map centered on Zion
   const map = L.map('map').setView([37.2982, -113.0263], 13);
 
@@ -133,7 +164,7 @@
     console.error('Failed to load GPX:', err);
   })
   .addTo(map);
-</script>
+</script> -->
 
 
     
