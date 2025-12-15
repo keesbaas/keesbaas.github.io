@@ -137,6 +137,16 @@ fetch('visited_parks.geojson')
   })
   .addTo(map);
 
+const blackTriangle = L.divIcon({
+    className: '', // no default styles
+    html: '<div style="width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 16px solid black;"></div>',
+    iconSize: [16, 16],
+    iconAnchor: [8, 16] // point the tip at the location
+});
+
+
+
+    
   // Add photo markers along the route
   const photos = [
     
@@ -149,6 +159,7 @@ fetch('visited_parks.geojson')
   photos.forEach(photo => {
     const marker = L.marker([photo.lat, photo.lng], {
       title: photo.caption
+        icon: blackTriangle
     }).addTo(map);
 
     marker.on('click', () => {
