@@ -158,7 +158,7 @@ const blackTriangle = L.divIcon({
 
   photos.forEach(photo => {
     const marker = L.marker([photo.lat, photo.lng], {
-      title: photo.caption
+      title: photo.caption,
         icon: blackTriangle
     }).addTo(map);
 
