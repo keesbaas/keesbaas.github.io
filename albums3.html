@@ -20,6 +20,31 @@
   }
 </style>
 
+<style>
+  /* Map styling */
+  #map {
+    width: 48%;          /* roughly half the page */
+    height: 600px;       /* taller map */
+    margin-left: 1%;     /* small buffer from left edge */
+    float: left;         /* float left in the container */
+  }
+
+  /* Right-side text */
+  .right-text {
+    width: 48%;          /* roughly half the page */
+    float: right;        /* float right next to the map */
+    margin-right: 1%;    /* small buffer from right edge */
+    font-family: Arial, sans-serif;
+    color: #fff;
+  }
+
+  /* Clear floats after container */
+  .map-text-container::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+</style>
 
 </head>
 <body>
@@ -46,7 +71,13 @@
     </header>
     
     <!-- Zion hike map -->
-<div id="map"></div>
+<div class="map-text-container">
+    <div id="map"></div>
+    <div class="right-text">
+        <p>Here’s some text about Zion NP, your hike, or anything you want.</p>
+        <p>Maybe instructions, notes, or links to other content.</p>
+    </div>
+</div>
 
 <!-- Container where JS will populate rows -->
 <div class="album-container" id="album-container"></div>
