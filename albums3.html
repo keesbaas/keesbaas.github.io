@@ -82,52 +82,59 @@
 </script> -->
 
     
-    <script>
+<script>
   // Initialize map centered on Zion
-  const map = L.map('map').setView(
-    [37.2982, -113.0263], // Zion NP
-    13
-  );
+  const map = L.map('map').setView([37.2982, -113.0263], 13);
 
-  // Esri World Imagery basemap
+  // ESRI World Imagery basemap
   L.tileLayer(
     'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
     { attribution: 'Esri' }
   ).addTo(map);
 
   // Load and animate GPX trail
-  const gpxLayer = new L.GPX('ZionTraverse.gpx', {
+  new L.GPX('ZionTraverse.gpx', {
     async: true,
     polyline_options: {
       color: '#00E5FF',
       weight: 4,
       opacity: 0.9
+    },
+    marker_options: {
+      startIcon: null,   // remove start marker
+      endIcon: null,     // remove end marker
+      shadow: null
     }
   })
   .on('loaded', function(e) {
-    const polyline = e.target.getLayers()[0];
-    const latlngs = polyline.getLatLngs();
+    // Loop through all layers (tracks) in the GPX file
+    e.target.getLayers().forEach(polyline => {
+      if (polyline instanceof L.Polyline) {
+        const latlngs = polyline.getLatLngs();
 
-    // Zoom map to trail
-    map.fitBounds(polyline.getBounds(), {
-      padding: [20, 20]
-    });
+        // Zoom map to bounds of this track
+        map.fitBounds(polyline.getBounds(), { padding: [20, 20] });
 
-    // Animate drawing
-    polyline.setLatLngs([]);
-
-    let i = 0;
-    const drawInterval = setInterval(() => {
-      if (i < latlngs.length) {
-        polyline.addLatLng(latlngs[i]);
-        i++;
-      } else {
-        clearInterval(drawInterval);
+        // Animate drawing
+        polyline.setLatLngs([]); // start with empty line
+        let i = 0;
+        const drawInterval = setInterval(() => {
+          if (i < latlngs.length) {
+            polyline.addLatLng(latlngs[i]);
+            i++;
+          } else {
+            clearInterval(drawInterval);
+          }
+        }, 25); // adjust speed here (ms per point)
       }
-    }, 25);
+    });
+  })
+  .on('error', function(err){
+    console.error('Failed to load GPX:', err);
   })
   .addTo(map);
 </script>
+
 
     
 <script>
