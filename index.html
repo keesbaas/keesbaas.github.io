@@ -131,6 +131,12 @@ const visitedParks = [
   
 ];
 
+const parkAlbums = {
+  "Zion National Park": "albums3.html",
+  "Grand Teton National Park": "albums4.html",
+  "Isle Royale National Park": "isleRoyale.html"
+};
+
   // Load visited parks GeoJSON
   fetch('visited_parks.geojson')
     .then(response => response.json())
@@ -168,7 +174,7 @@ const visitedParks = [
 }
         
         
-        }
+        
       }).addTo(map);
     });
 </script>
