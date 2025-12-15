@@ -5,6 +5,22 @@
     <title>zion '25</title>
     <link rel="stylesheet" href="style2.css"> <!-- Links your styles -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+    <style>
+  #map {
+    width: 100%;
+    height: 450px;
+    margin: 20px auto 40px auto;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+</style>
+
+
 </head>
 <body>
     <header>
@@ -28,9 +44,67 @@
             }
             </style>
     </header>
+    
+    <!-- Zion hike map -->
+<div id="map"></div>
+
 <!-- Container where JS will populate rows -->
 <div class="album-container" id="album-container"></div>
 
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Leaflet GPX plugin -->
+<script src="https://unpkg.com/leaflet-gpx/gpx.min.js"></script>
+
+    <script>
+  // Initialize map centered on Zion
+  const map = L.map('map').setView(
+    [37.2982, -113.0263], // Zion NP
+    13
+  );
+
+  // Esri World Imagery basemap
+  L.tileLayer(
+    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    { attribution: 'Esri' }
+  ).addTo(map);
+
+  // Load and animate GPX trail
+  const gpxLayer = new L.GPX('ZionTraverse.gpx', {
+    async: true,
+    polyline_options: {
+      color: '#00E5FF',
+      weight: 4,
+      opacity: 0.9
+    }
+  })
+  .on('loaded', function(e) {
+    const polyline = e.target.getLayers()[0];
+    const latlngs = polyline.getLatLngs();
+
+    // Zoom map to trail
+    map.fitBounds(polyline.getBounds(), {
+      padding: [20, 20]
+    });
+
+    // Animate drawing
+    polyline.setLatLngs([]);
+
+    let i = 0;
+    const drawInterval = setInterval(() => {
+      if (i < latlngs.length) {
+        polyline.addLatLng(latlngs[i]);
+        i++;
+      } else {
+        clearInterval(drawInterval);
+      }
+    }, 25);
+  })
+  .addTo(map);
+</script>
+
+    
 <script>
   const container = document.getElementById('album-container');
 
