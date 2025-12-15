@@ -117,6 +117,13 @@
     { attribution: 'Esri' }
   ).addTo(map);
 
+
+// Labels + roads overlay
+L.tileLayer(
+  'https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',
+  { attribution: 'Esri' }
+).addTo(map);
+
 // Load Zion park boundary
 fetch('visited_parks.geojson')
   .then(response => response.json())
