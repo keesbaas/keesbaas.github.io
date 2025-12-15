@@ -63,6 +63,15 @@
             border-top: 1px solid #222;
             border-bottom: 1px solid #222;
         }
+        
+        /* Park label styling */
+.park-label {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.9);
+    pointer-events: auto; /* allow clicks */
+}
 
     </style>
 </head>
@@ -138,10 +147,27 @@ const visitedParks = [
           fillColor: '#008080',
           fillOpacity: 0.3
         },
-        onEachFeature: function (feature, layer) {
-          layer.bindPopup(
-            `<strong>${feature.properties.UNIT_NAME}</strong>`
-          );
+        
+        onEachFeature: function(feature, layer) {
+  const parkName = feature.properties.UNIT_NAME;
+  const albumLink = parkAlbums[parkName];
+
+  // Permanent centered label
+  layer.bindTooltip(parkName, {
+    permanent: true,
+    direction: 'center',
+    className: 'park-label'
+  });
+
+  // Clicking park OR label goes to album
+  if (albumLink) {
+    layer.on('click', function () {
+      window.location.href = albumLink;
+    });
+  }
+}
+        
+        
         }
       }).addTo(map);
     });
