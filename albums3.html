@@ -44,6 +44,17 @@
     display: table;
     clear: both;
   }
+
+.photo-label-text {
+  background: none;     /* no background */
+  border: none;         /* no border */
+  padding: 0;           /* remove padding */
+  color: black;         /* text color */
+  font-weight: normal;  /* optional */
+  font-size: 12px;      /* adjust as needed */
+}
+
+    
 </style>
 
 </head>
@@ -166,7 +177,7 @@ const blackTriangle = L.divIcon({
     permanent: true,       // always visible
     direction: 'top',      // position above marker
     offset: [10, -10],     // x (right), y (up) in pixels
-    className: 'photo-label'  // optional CSS class for styling
+    className: 'photo-label-text'  // optional CSS class for styling
   });
 
     marker.on('click', () => {
