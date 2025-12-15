@@ -10,33 +10,31 @@
   rel="stylesheet"
   href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
 />
-    <style>
-  #map {
-    width: 100%;
-    height: 450px;
-    margin: 20px auto 40px auto;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-  }
-</style>
+
 
 <style>
   /* Map styling */
+
+    .map-text-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 20px 1%;
+    }
+    
   #map {
-    width: 60%;          /* roughly half the page */
-    height: 600px;       /* taller map */
-    margin-left: 1%;     /* small buffer from left edge */
-    float: left;         /* float left in the container */
+    flex: 0 0 50%;          /* roughly half the page */
+    height: 800px;       /* taller map */
+    
   }
 
   /* Right-side text */
   .right-text {
-    width: 35%;          /* roughly half the page */
-    float: right;        /* float right next to the map */
-    margin-right: 1%;    /* small buffer from right edge */
+    flex: 0 0 40%;          /* roughly half the page */
+    
     font-family: Arial, sans-serif;
     text-align: center;
-    align-items: center;
+    
     color: #000000;
   }
 
