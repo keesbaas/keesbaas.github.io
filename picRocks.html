@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    
+    // CHANGE THIS
     <title>zion '25</title>
+    
     <link rel="stylesheet" href="style2.css"> <!-- Links your styles -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- Leaflet CSS -->
@@ -90,7 +93,8 @@
 </head>
 <body>
     <header>
-        
+
+        // CHANGE
         <h1>zion '25</h1>
             <a href="index.html" class="fade-link">back</a>
     
@@ -115,7 +119,8 @@
 <div class="map-text-container">
     <div id="map"></div>
     <div class="right-text">
-        <p>this is a map!</p>
+        
+        <p>this is a map!</p>    //CHANGE
         <p>of zion!</p>
     </div>
 </div>
@@ -188,7 +193,7 @@ L.control.layers(baseMaps, overlays, {
 //   { attribution: 'Esri' }
 // ).addTo(map);
 
-// Load Zion park boundary
+// Load Zion park boundary - Loads all boundaries, should be alright
 fetch('visited_parks.geojson')
   .then(response => response.json())
   .then(data => {
@@ -203,7 +208,8 @@ fetch('visited_parks.geojson')
   })
   .catch(err => console.error('Failed to load boundary geojson:', err));
 
-  new L.GPX('ZionTraverse.gpx', {
+    // CHANGE GPX FILE
+  new L.GPX('ZionTraverse.gpx', {    
     async: true,
     polyline_options: {
       color: '#00E5FF',
@@ -237,7 +243,7 @@ const blackTriangle = L.divIcon({
 
 
     
-  // Add photo markers along the route
+  // Add photo markers along the route - CHANGE WITH NEW LAT-LONG AND PICS
   const photos = [
     
     { id: 7, lat: 37.451913033497036, lng: -113.19085476210358, caption: "Lee's Pass TH" }, // Lee's Passs 37.451913033497036, -113.19085476210358
@@ -347,7 +353,7 @@ const blackTriangle = L.divIcon({
 <script>
   const container = document.getElementById('album-container');
 
-  // Load photo data from JSON
+  // Load photo data from JSON - NEED TO CHANGE JSON FILE TO HAVE CORRECT PHOTOS
   fetch('photos.json')
     .then(response => response.json())
     .then(photos => {
