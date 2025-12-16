@@ -1,1 +1,13 @@
-[]
+[
+
+  {
+    "src": "images/fourteener1_low.jpg",
+    "highres": "images/fourteener1.jpg",
+    "caption": ""
+  },
+  {
+    "src": "images/fourteener2_low.jpg",
+    "highres": "images/fourteener2.jpg",
+    "caption": ""
+  }
+]
