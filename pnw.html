@@ -116,7 +116,7 @@
     <div id="map"></div>
     <div class="right-text">
         <p>this is a map!</p>
-        <p>of zion!</p>
+        <p>of the pnw!</p>
     </div>
 </div>
 
@@ -132,7 +132,7 @@
 
 
 <script>
-  const map = L.map('map').setView([37.2982, -113.0263], 10);
+  const map = L.map('map').setView([47.862580971784254, -122.02948798610291], 7); //47.862580971784254, -122.02948798610291
 
   // L.tileLayer(
   //   'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
@@ -220,7 +220,7 @@ fetch('visited_parks.geojson')
     }
   })
   .on('loaded', function(e) {
-    map.fitBounds(e.target.getBounds(), { padding: [20, 20] });
+    // map.fitBounds(e.target.getBounds(), { padding: [20, 20] });
   })
   .on('error', function(err){
     console.error('Failed to load GPX:', err);
