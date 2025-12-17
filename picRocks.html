@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     
-    // CHANGE THIS
-    <title>zion '25</title>
+    
+    <title>pictured rocks</title>
     
     <link rel="stylesheet" href="style2.css"> <!-- Links your styles -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -94,8 +94,8 @@
 <body>
     <header>
 
-        // CHANGE
-        <h1>zion '25</h1>
+        
+        <h1>pictured rocks</h1>
             <a href="index.html" class="fade-link">back</a>
     
             <style>
@@ -121,7 +121,7 @@
     <div class="right-text">
         
         <p>this is a map!</p>    //CHANGE
-        <p>of zion!</p>
+        <p>of pictured rocks!</p>
     </div>
 </div>
 
@@ -137,7 +137,7 @@
 
 
 <script>
-  const map = L.map('map').setView([37.2982, -113.0263], 10);
+  const map = L.map('map').setView([46.56169793698968, -86.3296239311675], 10); //46.56169793698968, -86.3296239311675
 
   // L.tileLayer(
   //   'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
@@ -226,7 +226,7 @@ fetch('visited_parks.geojson')
     }
   })
   .on('loaded', function(e) {
-    map.fitBounds(e.target.getBounds(), { padding: [20, 20] });
+    // map.fitBounds(e.target.getBounds(), { padding: [20, 20] });
   })
   .on('error', function(err){
     console.error('Failed to load GPX:', err);
@@ -354,7 +354,7 @@ const blackTriangle = L.divIcon({
   const container = document.getElementById('album-container');
 
   // Load photo data from JSON - NEED TO CHANGE JSON FILE TO HAVE CORRECT PHOTOS
-  fetch('photos.json')
+  fetch('picRocks.json')
     .then(response => response.json())
     .then(photos => {
       photos.forEach(photo => {
