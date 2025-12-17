@@ -348,7 +348,7 @@ const blackTriangle = L.divIcon({
   const container = document.getElementById('album-container');
 
   // Load photo data from JSON
-  fetch('photos.json')
+  fetch('pnw.json')
     .then(response => response.json())
     .then(photos => {
       photos.forEach(photo => {
