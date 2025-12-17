@@ -228,7 +228,7 @@ fetch('visited_parks.geojson')
     }
   })
   .on('loaded', function(e) {
-    map.fitBounds(e.target.getBounds(), { padding: [20, 20] });
+    // map.fitBounds(e.target.getBounds(), { padding: [20, 20] });
   })
   .on('error', function(err){
     console.error('Failed to load GPX:', err);
