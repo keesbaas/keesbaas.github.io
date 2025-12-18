@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>zion '25</title>
+    <title>14ers</title>
     <link rel="stylesheet" href="style2.css"> <!-- Links your styles -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- Leaflet CSS -->
@@ -91,7 +91,7 @@
 <body>
     <header>
         
-        <h1>zion '25</h1>
+        <h1>14ers</h1>
             <a href="index.html" class="fade-link">back</a>
     
             <style>
@@ -116,7 +116,7 @@
     <div id="map"></div>
     <div class="right-text">
         <p>this is a map!</p>
-        <p>of zion!</p>
+        <p>of just like, generally colorado!</p>
     </div>
 </div>
 
@@ -132,7 +132,7 @@
 
 
 <script>
-  const map = L.map('map').setView([37.2982, -113.0263], 10);
+  const map = L.map('map').setView([39.495818090129916, -105.5537259365111], 9); // 39.495818090129916, -105.5537259365111
 
   // L.tileLayer(
   //   'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
@@ -220,7 +220,7 @@ fetch('visited_parks.geojson')
     }
   })
   .on('loaded', function(e) {
-    map.fitBounds(e.target.getBounds(), { padding: [20, 20] });
+    // map.fitBounds(e.target.getBounds(), { padding: [20, 20] });
   })
   .on('error', function(err){
     console.error('Failed to load GPX:', err);
@@ -348,7 +348,7 @@ const blackTriangle = L.divIcon({
   const container = document.getElementById('album-container');
 
   // Load photo data from JSON
-  fetch('photos.json')
+  fetch('fourteeners.json')
     .then(response => response.json())
     .then(photos => {
       photos.forEach(photo => {
