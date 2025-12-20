@@ -25,6 +25,11 @@
     "highres": "images/badlands5.jpg",
     "caption": ""
   },
+   {
+    "src": "images/badlands10.jpg",
+    "highres": "images/badlands10.jpg",
+    "caption": ""
+  },
   {
     "src": "images/badlands6.jpg",
     "highres": "images/badlands6.jpg",
@@ -45,4 +50,5 @@
     "highres": "images/badlands9.jpg",
     "caption": ""
   }
+     
 ]
