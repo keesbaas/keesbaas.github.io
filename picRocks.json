@@ -1,13 +1,38 @@
 [
 
   {
-    "src": "images/PR1_low.jpg",
+    "src": "images/PR1.jpg",
     "highres": "images/PR1.jpg",
     "caption": ""
   },
   {
-    "src": "images/PR2_low.jpg",
+    "src": "images/PR2.jpg",
     "highres": "images/PR2.jpg",
+    "caption": ""
+  },
+    {
+    "src": "images/PR3.jpg",
+    "highres": "images/PR3.jpg",
+    "caption": ""
+  },
+    {
+    "src": "images/PR4.jpg",
+    "highres": "images/PR4.jpg",
+    "caption": ""
+  },
+    {
+    "src": "images/PR5.jpg",
+    "highres": "images/PR5.jpg",
+    "caption": ""
+  },
+    {
+    "src": "images/PR6.jpg",
+    "highres": "images/PR6.jpg",
+    "caption": ""
+  },
+    {
+    "src": "images/PR7.jpg",
+    "highres": "images/PR7.jpg",
     "caption": ""
   }
 ]
