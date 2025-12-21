@@ -43,5 +43,15 @@
     "src": "images/tetons9_low.jpg",
     "highres": "images/tetons9.jpg",
     "caption": ""
+  },
+      {
+    "src": "images/tetons10_low.jpg",
+    "highres": "images/tetons10.jpg",
+    "caption": ""
+  },
+    {
+    "src": "images/tetons11_low.jpg",
+    "highres": "images/tetons11.jpg",
+    "caption": ""
   }
 ]
