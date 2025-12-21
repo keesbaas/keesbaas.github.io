@@ -36,12 +36,20 @@
         }
 
         /* Gallery grid */
+
         .gallery {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+        
+        
+        /* .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             padding: 20px;
-        }
+        } */
 
         /* Optional: fade-link style if you want other text links */
         .fade-link,
@@ -194,11 +202,11 @@ const parkAlbums = {
 
       L.geoJSON(filteredFeatures, {
         style: {
-          color: '#008080',
-          weight: 2,
-          fillColor: '#008080',
-          fillOpacity: 0.3
-        },
+  color: '#3aa6a6',
+  weight: 2,
+  fillColor: '#3aa6a6',
+  fillOpacity: 0.25
+}
         
         onEachFeature: function(feature, layer) {
   const parkName = feature.properties.UNIT_NAME;
