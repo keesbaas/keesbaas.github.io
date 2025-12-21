@@ -375,7 +375,7 @@ const blackTriangle = L.divIcon({
 
         // Caption
         const p = document.createElement('p');
-        p.innerText = photo.caption;
+        p.innerHTML = photo.caption.replace(/\n/g, '<br>');
 
         // Append to row
         row.appendChild(link);
