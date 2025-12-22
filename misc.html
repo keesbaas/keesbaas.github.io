@@ -1,1 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>misc</title>
+    <link rel="stylesheet" href="style2.css"> <!-- Links your styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+        
+        <h1>misc</h1>
+            <a href="index.html" class="fade-link">back</a>
+    
+            <style>
+            .fade-link,
+            .fade-link:visited {
+              color: #000000;
+              text-decoration: none;
+                display: block;
+              text-align: center;
+              margin-top: 10px;
+              transition: color 0.25s ease;
+            }
+            
+            .fade-link:hover {
+              color: #333333;
+            }
+            </style>
+</header>
 
+
+<!-- Container where JS will populate rows -->
+<div class="album-container" id="album-container"></div>
+
+<script>
+  const container = document.getElementById('album-container');
+
+  // Load photo data from JSON
+  fetch('misc.json')
+    .then(response => response.json())
+    .then(photos => {
+      photos.forEach(photo => {
+        const row = document.createElement('div');
+        row.className = 'photo-row';
+
+        // Link to high-res
+        const link = document.createElement('a');
+        link.href = photo.highres;
+        link.target = "_blank";
+
+        // Image
+        const img = document.createElement('img');
+        img.src = photo.src;
+        img.alt = photo.caption;
+        img.loading = "eager";  // ensures image loads right away
+
+        link.appendChild(img);
+
+        // Caption
+        const p = document.createElement('p');
+        p.textContent = photo.caption;
+
+        // Append to row
+        row.appendChild(link);
+        row.appendChild(p);
+        container.appendChild(row);
+      });
+
+      // Fade-in on scroll
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      document.querySelectorAll('.photo-row').forEach(row => observer.observe(row));
+    })
+    .catch(err => console.error('Failed to load photos.json:', err));
+</script>
+
+</body>
+</html>
