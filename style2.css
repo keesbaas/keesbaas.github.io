@@ -90,22 +90,7 @@ h1 {
   font-style: italic;
 }
 
-/* Responsive for tablets and phones */
-@media (max-width: 768px) {
-  .photo-row {
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-  }
-
-  .photo-row a,
-  .photo-row img,
-  .photo-row p {
-    width: 100%;
-    margin: 0 0 15px 0;
-  }
-
-      .map-text-container {
+ .map-text-container {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -179,4 +164,21 @@ h1 {
     .photo-row p {
   white-space: pre-line;
 }
+
+/* Responsive for tablets and phones */
+@media (max-width: 768px) {
+  .photo-row {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .photo-row a,
+  .photo-row img,
+  .photo-row p {
+    width: 100%;
+    margin: 0 0 15px 0;
+  }
+
+     
 }
