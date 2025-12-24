@@ -28,6 +28,20 @@ h1 {
   color: #ffffff;
 }
 
+            .fade-link,
+            .fade-link:visited {
+              color: #ffffff;
+              text-decoration: none;
+                display: block;
+              text-align: center;
+              margin-top: 10px;
+              transition: color 0.25s ease;
+            }
+            
+            .fade-link:hover {
+              color: #333333;
+            }
+
 /* Container for all rows */
 .album-container {
   max-width: 1200px;
