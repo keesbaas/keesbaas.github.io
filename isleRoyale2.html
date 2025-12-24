@@ -17,78 +17,7 @@
 
   
 <style>
-  /* Map styling */
-
-    .map-text-container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin: 20px 1%;
-    }
-    
-  #map {
-    flex: 0 0 50%;          /* roughly half the page */
-    height: 800px;       /* taller map */
-    
-  }
-
-  /* Right-side text */
-  .right-text {
-    flex: 0 0 40%;          /* roughly half the page */
-    
-    font-family: Arial, sans-serif;
-    text-align: center;
-    
-    color: #000000;
-  }
-
-  /* Clear floats after container */
-  .map-text-container::after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-
-.photo-label-text {
-  background: none;     /* no background */
-  border: none;         /* no border */
-  padding: 0;           /* remove padding */
-  color: white;         /* text color */
-  font-weight: normal;  /* optional */
-  font-size: 12px;      /* adjust as needed */
-  cursor: pointer;  
-}
-
-.photo-label-text::after {
-  display: none;  /* removes the tooltip arrow */
-}
-
-.photo-label-text::before {
-  display: none;  /* removes the tooltip arrow */
-}
-
-/* Remove Leaflet tooltip box entirely */
-.leaflet-tooltip.photo-label-text {
-  background: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-}
-
-    .leaflet-tooltip.photo-label-text {
-  color: white;
-  font-size: 12px;
-  font-weight: 500;
-
-  /* Black outline effect */
-  text-shadow:
-    -1px -1px 0 #000,
-     1px -1px 0 #000,
-    -1px  1px 0 #000,
-     1px  1px 0 #000;
-}
-
-      
+  
 </style>
 
 </head>
