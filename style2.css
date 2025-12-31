@@ -96,7 +96,7 @@ h1 {
 
 /* Text styling */
 .photo-row p {
-  flex: 1 1 35%;     /* paragraph takes ~35% of row, can shrink slightly */
+  flex: 1 1 20%;     /* paragraph takes ~35% of row, can shrink slightly */
   
   
   font-size: 1.1rem;
