@@ -106,7 +106,7 @@ h1 {
 
  .map-text-container {
         display: flex;
-        align-items: center;
+        align-items: left;
         justify-content: space-between;
         margin: 20px 1%;
     }
