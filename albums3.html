@@ -138,6 +138,20 @@ fetch('visited_parks.geojson')
   .catch(err => console.error('Failed to load boundary geojson:', err));
 
   new L.GPX('ZionTraverse.gpx', {
+  async: true,
+  polyline_options: {
+    color: '#000000',
+    weight: 7,      // slightly thicker
+    opacity: 0.8
+  },
+  marker_options: {
+    startIconUrl: null,
+    endIconUrl: null,
+    shadowUrl: null
+  }
+}).addTo(map);
+    
+    new L.GPX('ZionTraverse.gpx', {
     async: true,
     polyline_options: {
       color: '#00E5FF',
@@ -153,19 +167,7 @@ fetch('visited_parks.geojson')
   
     }
   })
-new L.GPX('ZionTraverse.gpx', {
-  async: true,
-  polyline_options: {
-    color: '#000000',
-    weight: 7,      // slightly thicker
-    opacity: 0.8
-  },
-  marker_options: {
-    startIconUrl: null,
-    endIconUrl: null,
-    shadowUrl: null
-  }
-}).addTo(map);
+
 
     
       
