@@ -153,6 +153,22 @@ fetch('visited_parks.geojson')
   
     }
   })
+const gpxOutline = new L.GPX('ZionTraverse.gpx', {
+  async: true,
+  polyline_options: {
+    color: '#000000',
+    weight: 7,      // slightly thicker
+    opacity: 0.8
+  },
+  marker_options: {
+    startIconUrl: null,
+    endIconUrl: null,
+    shadowUrl: null
+  }
+}).addTo(map);
+
+    
+      
   .on('loaded', function(e) {
     map.fitBounds(e.target.getBounds(), { padding: [20, 20] });
   })
