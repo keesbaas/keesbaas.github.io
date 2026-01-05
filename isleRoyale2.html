@@ -128,6 +128,35 @@ fetch('visited_parks.geojson')
   .catch(err => console.error('Failed to load boundary geojson:', err));
 
     // CHANGE GPX FILE
+
+  new L.GPX('Minong.gpx', {
+  async: true,
+  polyline_options: {
+    color: '#000000',
+    weight: 7,      // slightly thicker
+    opacity: 0.8
+  },
+  marker_options: {
+    startIconUrl: null,
+    endIconUrl: null,
+    shadowUrl: null
+  }
+}).addTo(map);
+
+  new L.GPX('Greenstone.gpx', {
+  async: true,
+  polyline_options: {
+    color: '#000000',
+    weight: 7,      // slightly thicker
+    opacity: 0.8
+  },
+  marker_options: {
+    startIconUrl: null,
+    endIconUrl: null,
+    shadowUrl: null
+  }
+}).addTo(map);
+
   new L.GPX('Minong.gpx', {    
     async: true,
     polyline_options: {
