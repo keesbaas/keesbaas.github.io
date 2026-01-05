@@ -124,7 +124,7 @@ h1 {
     flex: 0 0 40%;          /* roughly half the page */
     
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    text-align: left;
+    text-align: center;
     
     color: #F0EAD6;
   }
