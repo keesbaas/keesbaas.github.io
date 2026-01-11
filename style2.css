@@ -5,6 +5,51 @@
   box-sizing: border-box;
 }
 
+/* --- Video page styles --- */
+
+.video-intro {
+  max-width: 800px;
+  margin: 0 auto 40px auto;
+  text-align: center;
+  color: #F0EAD6;
+  font-size: 1.1rem;
+}
+
+.video-grid {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.video-block {
+  flex: 1 1 45%;
+  max-width: 520px;
+}
+
+.video-block video {
+  width: 100%;
+  border-radius: 8px;
+  background: #111;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+.video-caption {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #F0EAD6;
+  text-align: center;
+}
+
+/* Stack videos on small screens */
+@media (max-width: 768px) {
+  .video-block {
+    flex: 1 1 100%;
+  }
+}
+
+
+
 body {
   background: #000000;
   color: #ffffff;
