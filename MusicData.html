@@ -57,68 +57,76 @@ fetch("https://keesbaas.github.io/music_things/artist_30day_summary.json")
 
     // Sort descending by minutes
     data.sort((a, b) => b.minutes - a.minutes);
-
-    // Take top 10
     const top10 = data.slice(0, 10);
 
     // Compute total minutes
     const totalMinutes = data.reduce((sum, artist) => sum + artist.minutes, 0);
 
-    // Convert to percentage
+    // Prepare labels and percentage values
     const labels = top10.map(a => a.artist);
-    const percentages = top10.map(a => 
-        ((a.minutes / totalMinutes) * 100).toFixed(1)
-    );
-    
-      new Chart(document.getElementById("artistChart"), {
-  type: 'bar',
-  data: {
-    labels: labels,
-    datasets: [{
-      label: "% of Total Listening Time",
-      data: percentages,
-      backgroundColor: 'rgba(75, 192, 192, 0.7)',
-      borderColor: 'rgba(75, 192, 192, 1)',
-      borderWidth: 1,
-      borderRadius: 5       // slightly rounded edges
-    }]
-  },
-  options: {
-    indexAxis: 'y',         // <-- makes it horizontal
-    responsive: true,
-    maintainAspectRatio: false,
-    scales: {
-      x: {
-        beginAtZero: true,
-        max: 100,
-        ticks: {
-          callback: value => value + "%"  // show percentages on x-axis
-        }
+    const percentages = top10.map(a => +( (a.minutes / totalMinutes) * 100 ).toFixed(1));
+
+    new Chart(document.getElementById("artistChart"), {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: "% of Total Listening Time",
+          data: percentages,
+          backgroundColor: 'rgba(0, 220, 255, 0.8)', // neon-style color that pops on black
+          borderRadius: 6,
+          barPercentage: 0.6,       // controls thickness of bars (less = more spacing)
+          categoryPercentage: 0.7   // controls spacing between categories
+        }]
       },
-      y: {
-        ticks: {
-          autoSkip: false, // show all artist labels
-          font: {
-            size: 14
+      options: {
+        indexAxis: 'y',             // horizontal bars
+        responsive: true,
+        maintainAspectRatio: false,
+        layout: {
+          padding: 10
+        },
+        scales: {
+          x: {
+            beginAtZero: true,
+            max: 100,
+            grid: {
+              display: false       // removes vertical grid lines
+            },
+            ticks: {
+              color: '#fff',      // x-axis numbers white
+              callback: value => value + "%" // show % sign
+            }
+          },
+          y: {
+            grid: {
+              display: false       // removes horizontal grid lines
+            },
+            ticks: {
+              color: '#fff',       // artist names in white
+              font: {
+                size: 14
+              }
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            backgroundColor: '#222',
+            titleColor: '#fff',
+            bodyColor: '#fff',
+            callbacks: {
+              label: function(context) {
+                return context.parsed.x + "% (" + top10[context.dataIndex].minutes.toFixed(1) + " min)";
+              }
+            }
           }
         }
       }
-    },
-    plugins: {
-      legend: {
-        display: false
-      },
-      tooltip: {
-        callbacks: {
-          label: function(context) {
-            return context.parsed.x + "% (" + top10[context.dataIndex].minutes.toFixed(1) + " min)";
-          }
-        }
-      }
-    }
-  }
-});
-    
+    });
 
   });
 </script>
