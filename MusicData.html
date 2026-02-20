@@ -69,26 +69,56 @@ fetch("https://keesbaas.github.io/music_things/artist_30day_summary.json")
     const percentages = top10.map(a => 
         ((a.minutes / totalMinutes) * 100).toFixed(1)
     );
-
-    new Chart(document.getElementById("artistChart"), {
-      type: "bar",
-      data: {
-        labels: labels,
-        datasets: [{
-          label: "% of Total Listening Time",
-          data: percentages
-        }]
+    
+      new Chart(document.getElementById("artistChart"), {
+  type: 'bar',
+  data: {
+    labels: labels,
+    datasets: [{
+      label: "% of Total Listening Time",
+      data: percentages,
+      backgroundColor: 'rgba(75, 192, 192, 0.7)',
+      borderColor: 'rgba(75, 192, 192, 1)',
+      borderWidth: 1,
+      borderRadius: 5       // slightly rounded edges
+    }]
+  },
+  options: {
+    indexAxis: 'y',         // <-- makes it horizontal
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        beginAtZero: true,
+        max: 100,
+        ticks: {
+          callback: value => value + "%"  // show percentages on x-axis
+        }
       },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true,
-            max: 100
+      y: {
+        ticks: {
+          autoSkip: false, // show all artist labels
+          font: {
+            size: 14
           }
         }
       }
-    });
+    },
+    plugins: {
+      legend: {
+        display: false
+      },
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            return context.parsed.x + "% (" + top10[context.dataIndex].minutes.toFixed(1) + " min)";
+          }
+        }
+      }
+    }
+  }
+});
+    
 
   });
 </script>
