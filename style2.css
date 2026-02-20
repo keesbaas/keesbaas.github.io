@@ -15,6 +15,16 @@
   font-size: 1.1rem;
 }
 
+.chart-container {
+  max-width: 800px;        /* controls max width */
+  width: 90%;              /* responsive width */
+  margin: 50px auto;       /* centers the chart horizontally with some top/bottom margin */
+  background: #f9f9f9;     /* optional light background */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
 .video-grid {
   display: flex;
   gap: 30px;
