@@ -25,6 +25,12 @@
   box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
 
+@media (max-width: 600px) {
+  .chart-container canvas {
+    height: 600px;  /* more vertical space for bars */
+  }
+}
+
 .video-grid {
   display: flex;
   gap: 30px;
