@@ -45,5 +45,51 @@
 
 </div>
 
+<canvas id="artistChart"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+fetch("top_artists.json")
+  .then(response => response.json())
+  .then(data => {
+
+    // Sort descending by minutes
+    data.sort((a, b) => b.minutes - a.minutes);
+
+    // Take top 10
+    const top10 = data.slice(0, 10);
+
+    // Compute total minutes
+    const totalMinutes = data.reduce((sum, artist) => sum + artist.minutes, 0);
+
+    // Convert to percentage
+    const labels = top10.map(a => a.artist);
+    const percentages = top10.map(a => 
+        ((a.minutes / totalMinutes) * 100).toFixed(1)
+    );
+
+    new Chart(document.getElementById("artistChart"), {
+      type: "bar",
+      data: {
+        labels: labels,
+        datasets: [{
+          label: "% of Total Listening Time",
+          data: percentages
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100
+          }
+        }
+      }
+    });
+
+  });
+</script>
+  
 </body>
 </html>
