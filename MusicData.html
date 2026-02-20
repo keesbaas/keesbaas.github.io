@@ -62,9 +62,11 @@ fetch("https://keesbaas.github.io/music_things/artist_30day_summary.json")
     // Compute total minutes
     const totalMinutes = data.reduce((sum, artist) => sum + artist.minutes, 0);
 
-    // Prepare labels and percentage values
     const labels = top10.map(a => a.artist);
-    const percentages = top10.map(a => +( (a.minutes / totalMinutes) * 100 ).toFixed(1));
+    const percentages = top10.map(a => +((a.minutes / totalMinutes) * 100).toFixed(1));
+
+    // Determine max X dynamically (slightly above highest percentage)
+    const maxX = Math.ceil(Math.max(...percentages) / 10) * 10 + 10;
 
     new Chart(document.getElementById("artistChart"), {
       type: 'bar',
@@ -73,47 +75,44 @@ fetch("https://keesbaas.github.io/music_things/artist_30day_summary.json")
         datasets: [{
           label: "% of Total Listening Time",
           data: percentages,
-          backgroundColor: 'rgba(0, 220, 255, 0.8)', // neon-style color that pops on black
+          backgroundColor: 'rgba(0, 220, 255, 0.8)',
           borderRadius: 6,
-          barPercentage: 0.6,       // controls thickness of bars (less = more spacing)
-          categoryPercentage: 0.7   // controls spacing between categories
+          barPercentage: 0.6,
+          categoryPercentage: 0.7
         }]
       },
       options: {
-        indexAxis: 'y',             // horizontal bars
+        indexAxis: 'y',
         responsive: true,
         maintainAspectRatio: false,
-        layout: {
-          padding: 10
-        },
+        layout: { padding: 10 },
         scales: {
           x: {
             beginAtZero: true,
-            max: 100,
-            grid: {
-              display: false       // removes vertical grid lines
+            max: maxX,                     // dynamic scale
+            title: {
+              display: true,
+              text: 'Percentage of Total Listening',
+              color: '#fff',
+              font: { size: 16 }
             },
+            grid: { display: false },
             ticks: {
-              color: '#fff',      // x-axis numbers white
-              callback: value => value + "%" // show % sign
+              color: '#fff',
+              callback: value => value + '%'
             }
           },
           y: {
-            grid: {
-              display: false       // removes horizontal grid lines
-            },
+            grid: { display: false },
             ticks: {
-              color: '#fff',       // artist names in white
-              font: {
-                size: 14
-              }
+              color: '#fff',
+              font: { size: 14 },
+              autoSkip: false               // force all labels to show
             }
           }
         },
         plugins: {
-          legend: {
-            display: false
-          },
+          legend: { display: false },
           tooltip: {
             backgroundColor: '#222',
             titleColor: '#fff',
