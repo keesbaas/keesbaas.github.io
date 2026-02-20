@@ -16,13 +16,13 @@
 }
 
 .chart-container {
-  max-width: 800px;        /* controls max width */
-  width: 90%;              /* responsive width */
-  margin: 50px auto;       /* centers the chart horizontally with some top/bottom margin */
-  background: #f9f9f9;     /* optional light background */
+  max-width: 800px;
+  width: 90%;
+  margin: 50px auto;
+  background-color: #111; /* slightly lighter than full black for contrast */
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
 
 .video-grid {
