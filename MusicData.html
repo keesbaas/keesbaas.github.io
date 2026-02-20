@@ -85,16 +85,16 @@ fetch("https://keesbaas.github.io/music_things/artist_30day_summary.json")
         indexAxis: 'y',
         responsive: true,
         maintainAspectRatio: false,
-        layout: { padding: 10 },
+        layout: { padding: 12 },
         scales: {
           x: {
             beginAtZero: true,
             max: maxX,                     // dynamic scale
             title: {
               display: true,
-              text: 'Percentage of Total Listening',
+              text: 'Percentage of Total Listening (Last 30 days)',
               color: '#fff',
-              font: { size: 16 }
+              font: { size: 14 }
             },
             grid: { display: false },
             ticks: {
