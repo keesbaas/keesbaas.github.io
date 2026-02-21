@@ -17,7 +17,6 @@
 
 .chart-container {
   max-width: 800px;
-  height: 600px;
   width: 90%;
   margin: 50px auto;
   background-color: #111; /* slightly lighter than full black for contrast */
@@ -66,24 +65,14 @@
 }
 
 
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
 
-            margin: 0;
-            background: #111;
-            color: #fff;
-            text-align: center;
-          scroll-behavior: smooth;
-            
-        }
-
-        header {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 4rem 1.5rem 3rem;
-  text-align: center;
+body {
+  background: #000000;
+  color: #ffffff;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  scroll-behavior: smooth;
 }
-
 
 header .fade-link {
   display: block;
@@ -92,8 +81,6 @@ header .fade-link {
   opacity: 0.8;
   color: #ffffff;
 }
-
-
 
 h1 {
   text-align: center;
