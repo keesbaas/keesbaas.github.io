@@ -17,6 +17,7 @@
 
 .chart-container {
   max-width: 800px;
+  height: 600px;
   width: 90%;
   margin: 50px auto;
   background-color: #111; /* slightly lighter than full black for contrast */
