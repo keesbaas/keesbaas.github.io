@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Videos</title>
+  <title>music</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style2.css">
@@ -46,9 +46,20 @@
 </div>
 
 <div class="chart-container">
-  <canvas id="artistChart"></canvas>
+  <div class="chart-header">
+    <span>Total Minutes (Last 30 Days): <span id="minutes30"></span></span>
+  </div>
+  <canvas id="artistChart30"></canvas>
 </div>
 
+<div class="chart-container">
+  <div class="chart-header">
+    <span>Total Minutes (All Time): <span id="minutesAll"></span></span>
+  </div>
+  <canvas id="artistChartAll"></canvas>
+</div>
+
+  
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 fetch("https://keesbaas.github.io/music_things/artist_30day_summary.json")
