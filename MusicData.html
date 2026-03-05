@@ -2,10 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>music</title>
+  <title>Music Dashboard</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style2.css">
+
+  <style>
+    /* Ensure labels float correctly in each chart container */
+    .chart-container {
+      position: relative;
+      margin-bottom: 2rem;
+      height: 400px; /* Adjust height as needed */
+    }
+
+    .chart-header {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 500;
+      opacity: 0.9;
+    }
+  </style>
 </head>
 
 <body>
@@ -25,197 +44,159 @@
 
     <div class="video-block">
       <video controls>
-        <source src="images\Keeeees2025SpotifyTopTen.mp4" type="video/mp4">
+        <source src="images/Keeeees2025SpotifyTopTen.mp4" type="video/mp4">
       </video>
-      <div class="video-caption">
-        
-      </div>
+      <div class="video-caption"></div>
     </div>
 
     <div class="video-block">
       <video controls>
-        <source src="images\KeesSpotifyTopTenAll.mp4" type="video/mp4">
+        <source src="images/KeesSpotifyTopTenAll.mp4" type="video/mp4">
       </video>
-      <div class="video-caption">
-        
-      </div>
+      <div class="video-caption"></div>
     </div>
 
   </div>
 
 </div>
 
+<!-- 30-day chart -->
 <div class="chart-container">
   <div class="chart-header">
-    <span>Total Minutes (Last 30 Days): <span id="minutes30"></span></span>
+    Total Minutes (Last 30 Days): <span id="minutes30"></span>
   </div>
   <canvas id="artistChart30"></canvas>
 </div>
 
+<!-- All-time chart -->
 <div class="chart-container">
   <div class="chart-header">
-    <span>Total Minutes (All Time): <span id="minutesAll"></span></span>
+    Total Minutes (All Time): <span id="minutesAll"></span>
   </div>
   <canvas id="artistChartAll"></canvas>
 </div>
 
-  
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+document.addEventListener("DOMContentLoaded", function() {
 
-// 30-day total minutes
-fetch("https://keesbaas.github.io/music_things/minutes30day.json")
-  .then(r=>r.json())
-  .then(data=>{
-    document.getElementById("minutes30").textContent = Math.round(data).toLocaleString();
-  });
+  // --- Fill total minutes labels ---
+  fetch("https://keesbaas.github.io/music_things/minutes30day.json")
+    .then(r => r.json())
+    .then(data => {
+      document.getElementById("minutes30").textContent = Math.round(data).toLocaleString();
+    });
 
-// All-time total minutes
-fetch("https://keesbaas.github.io/music_things/total_minutes.json")
-  .then(r=>r.json())
-  .then(data=>{
-    document.getElementById("minutesAll").textContent = Math.round(data).toLocaleString();
-  });
-  
-fetch("https://keesbaas.github.io/music_things/artist_30day_summary.json")
-  .then(response => response.json())
-  .then(data => {
+  fetch("https://keesbaas.github.io/music_things/total_minutes.json")
+    .then(r => r.json())
+    .then(data => {
+      document.getElementById("minutesAll").textContent = Math.round(data).toLocaleString();
+    });
 
-    // Sort descending by minutes
-    data.sort((a, b) => b.minutes - a.minutes);
-    const top10 = data.slice(0, 10);
+  // --- 30-day top 10 percentage chart ---
+  fetch("https://keesbaas.github.io/music_things/artist_30day_summary.json")
+    .then(r => r.json())
+    .then(data => {
+      data.sort((a,b) => b.minutes - a.minutes);
+      const top10 = data.slice(0,10);
+      const totalMinutes = data.reduce((sum,a)=>sum+a.minutes,0);
 
-    // Compute total minutes
-    const totalMinutes = data.reduce((sum, artist) => sum + artist.minutes, 0);
+      const labels = top10.map(a => a.artist);
+      const percentages = top10.map(a => +((a.minutes / totalMinutes) * 100).toFixed(1));
+      const maxX = Math.ceil(Math.max(...percentages)/10)*10 + 10;
 
-    const labels = top10.map(a => a.artist);
-    const percentages = top10.map(a => +((a.minutes / totalMinutes) * 100).toFixed(1));
-
-    // Determine max X dynamically (slightly above highest percentage)
-    const maxX = Math.ceil(Math.max(...percentages) / 10) * 10 + 10;
-
-    new Chart(document.getElementById("artistChart"), {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [{
+      new Chart(document.getElementById("artistChart30"), {
+        type: 'bar',
+        data: { labels, datasets:[{
           label: "% of Total Listening Time",
           data: percentages,
-          backgroundColor: 'rgba(0, 220, 255, 0.8)',
-          borderRadius: 6,
-          barPercentage: 0.7,
-          categoryPercentage: 0.7
-        }]
-      },
-      options: {
-        indexAxis: 'y',
-        responsive: true,
-        maintainAspectRatio: false,
-        layout: { padding: 12 },
-        scales: {
-          x: {
-            beginAtZero: true,
-            max: maxX,                     // dynamic scale
-            title: {
-              display: true,
-              text: 'Percentage of Total Listening (Last 30 days)',
-              color: '#fff',
-              font: { size: 14 }
+          backgroundColor:'rgba(0,220,255,0.8)',
+          borderRadius:6,
+          barPercentage:0.7,
+          categoryPercentage:0.7
+        }]},
+        options: {
+          indexAxis:'y',
+          responsive:true,
+          maintainAspectRatio:false,
+          layout:{padding:12},
+          scales:{
+            x:{
+              beginAtZero:true,
+              max:maxX,
+              title:{display:true, text:'Percentage of Total Listening (Last 30 days)', color:'#fff', font:{size:14}},
+              grid:{display:false},
+              ticks:{color:'#fff', callback:v=>v+'%'}
             },
-            grid: { display: false },
-            ticks: {
-              color: '#fff',
-              callback: value => value + '%'
-            }
+            y:{grid:{display:false}, ticks:{color:'#fff', font:{size:14}, autoSkip:false}}
           },
-          y: {
-            grid: { display: false },
-            ticks: {
-              color: '#fff',
-              font: { size: 14 },
-              autoSkip: false               // force all labels to show
-            }
-          }
-        },
-        plugins: {
-          legend: { display: false },
-          tooltip: {
-            backgroundColor: '#222',
-            titleColor: '#fff',
-            bodyColor: '#fff',
-            callbacks: {
-              label: function(context) {
-                return context.parsed.x + "% (" + top10[context.dataIndex].minutes.toFixed(1) + " min)";
+          plugins:{
+            legend:{display:false},
+            tooltip:{
+              backgroundColor:'#222',
+              titleColor:'#fff',
+              bodyColor:'#fff',
+              callbacks:{
+                label: ctx => ctx.parsed.x + "% (" + top10[ctx.dataIndex].minutes.toFixed(1) + " min)"
               }
             }
           }
         }
-      }
+      });
     });
 
-  });
+  // --- All-time top 10 minutes chart ---
+  fetch("https://keesbaas.github.io/music_things/artist_alltime_summary.json")
+    .then(r => r.json())
+    .then(data => {
+      data.sort((a,b) => b.minutes - a.minutes);
+      const top10 = data.slice(0,10);
+      const labels = top10.map(a => a.artist);
+      const minutes = top10.map(a => a.minutes);
+      const maxX = Math.ceil(Math.max(...minutes)/10)*10 + 10;
 
-// All-time raw minutes chart
-fetch("https://keesbaas.github.io/music_things/artist_alltime_summary.json")
-  .then(r=>r.json())
-  .then(data=>{
-    data.sort((a,b)=>b.minutes-a.minutes);
-    const top10 = data.slice(0,10);
-
-    const labels = top10.map(a=>a.artist);
-    const minutes = top10.map(a=>a.minutes);
-    const maxX = Math.ceil(Math.max(...minutes)/10)*10 + 10;
-
-    new Chart(document.getElementById("artistChartAll"), {
-      type:'bar',
-      data:{
-        labels: labels,
-        datasets:[{
+      new Chart(document.getElementById("artistChartAll"), {
+        type: 'bar',
+        data: { labels, datasets:[{
           label: "Minutes Listened",
           data: minutes,
           backgroundColor:'rgba(0,220,255,0.8)',
           borderRadius:6,
           barPercentage:0.7,
           categoryPercentage:0.7
-        }]
-      },
-      options:{
-        indexAxis:'y',
-        responsive:true,
-        maintainAspectRatio:false,
-        layout:{padding:12},
-        scales:{
-          x:{
-            beginAtZero:true,
-            max:maxX,
-            title:{
-              display:true,
-              text:'Minutes Listened (All Time)',
-              color:'#fff',
-              font:{size:14}
+        }]},
+        options: {
+          indexAxis:'y',
+          responsive:true,
+          maintainAspectRatio:false,
+          layout:{padding:12},
+          scales:{
+            x:{
+              beginAtZero:true,
+              max:maxX,
+              title:{display:true, text:'Minutes Listened (All Time)', color:'#fff', font:{size:14}},
+              grid:{display:false},
+              ticks:{color:'#fff'}
             },
-            grid:{display:false},
-            ticks:{color:'#fff'}
+            y:{grid:{display:false}, ticks:{color:'#fff', font:{size:14}, autoSkip:false}}
           },
-          y:{grid:{display:false},ticks:{color:'#fff',font:{size:14},autoSkip:false}}
-        },
-        plugins:{
-          legend:{display:false},
-          tooltip:{
-            backgroundColor:'#222',
-            titleColor:'#fff',
-            bodyColor:'#fff',
-            callbacks:{
-              label:function(context){
-                return context.parsed.x + " min";
+          plugins:{
+            legend:{display:false},
+            tooltip:{
+              backgroundColor:'#222',
+              titleColor:'#fff',
+              bodyColor:'#fff',
+              callbacks:{
+                label: ctx => ctx.parsed.x + " min"
               }
             }
           }
         }
-      }
+      });
     });
-  });
+
+});
 </script>
-  
+
 </body>
 </html>
