@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
       document.getElementById("minutes30").textContent = Math.round(data).toLocaleString();
     });
 
-  fetch("https://keesbaas.github.io/music_things/total_minutes.json")
+  fetch("https://keesbaas.github.io/music_things/alltime_minutes.json")
     .then(r => r.json())
     .then(data => {
       document.getElementById("minutesAll").textContent = Math.round(data).toLocaleString();
