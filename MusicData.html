@@ -62,6 +62,21 @@
   
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+
+// 30-day total minutes
+fetch("https://keesbaas.github.io/music_things/minutes30day.json")
+  .then(r=>r.json())
+  .then(data=>{
+    document.getElementById("minutes30").textContent = Math.round(data).toLocaleString();
+  });
+
+// All-time total minutes
+fetch("https://keesbaas.github.io/music_things/total_minutes.json")
+  .then(r=>r.json())
+  .then(data=>{
+    document.getElementById("minutesAll").textContent = Math.round(data).toLocaleString();
+  });
+  
 fetch("https://keesbaas.github.io/music_things/artist_30day_summary.json")
   .then(response => response.json())
   .then(data => {
@@ -138,6 +153,67 @@ fetch("https://keesbaas.github.io/music_things/artist_30day_summary.json")
       }
     });
 
+  });
+
+// All-time raw minutes chart
+fetch("https://keesbaas.github.io/music_things/artist_alltime_summary.json")
+  .then(r=>r.json())
+  .then(data=>{
+    data.sort((a,b)=>b.minutes-a.minutes);
+    const top10 = data.slice(0,10);
+
+    const labels = top10.map(a=>a.artist);
+    const minutes = top10.map(a=>a.minutes);
+    const maxX = Math.ceil(Math.max(...minutes)/10)*10 + 10;
+
+    new Chart(document.getElementById("artistChartAll"), {
+      type:'bar',
+      data:{
+        labels: labels,
+        datasets:[{
+          label: "Minutes Listened",
+          data: minutes,
+          backgroundColor:'rgba(0,220,255,0.8)',
+          borderRadius:6,
+          barPercentage:0.7,
+          categoryPercentage:0.7
+        }]
+      },
+      options:{
+        indexAxis:'y',
+        responsive:true,
+        maintainAspectRatio:false,
+        layout:{padding:12},
+        scales:{
+          x:{
+            beginAtZero:true,
+            max:maxX,
+            title:{
+              display:true,
+              text:'Minutes Listened (All Time)',
+              color:'#fff',
+              font:{size:14}
+            },
+            grid:{display:false},
+            ticks:{color:'#fff'}
+          },
+          y:{grid:{display:false},ticks:{color:'#fff',font:{size:14},autoSkip:false}}
+        },
+        plugins:{
+          legend:{display:false},
+          tooltip:{
+            backgroundColor:'#222',
+            titleColor:'#fff',
+            bodyColor:'#fff',
+            callbacks:{
+              label:function(context){
+                return context.parsed.x + " min";
+              }
+            }
+          }
+        }
+      }
+    });
   });
 </script>
   
